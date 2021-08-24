@@ -1,15 +1,13 @@
 import { SolletWalletAdapter } from "@solana/wallet-adapter-sollet";
 
-const connectSolletButton = document.getElementById(
-  "connect-sollet"
-) as HTMLButtonElement;
-const solletWallet = new SolletWalletAdapter();
+const button = document.getElementById("connect-sollet");
+const wallet = new SolletWalletAdapter();
 
-solletWallet.on("ready", () => console.log("[sollet] wallet ready"));
-solletWallet.on("connect", () => console.log("[sollet] wallet connected"));
+wallet.on("ready", () => console.log("[sollet] wallet ready"));
+wallet.on("connect", () => console.log("[sollet] Connected"));
+wallet.on("disconnect", () => console.log("[sollet] Disconnected"));
+wallet.on("error", () => console.log("[sollet] error"));
 
-connectSolletButton.addEventListener("click", () => {
-  console.log(solletWallet);
-
-  solletWallet.connect();
+button.addEventListener("click", () => {
+  wallet.connect();
 });

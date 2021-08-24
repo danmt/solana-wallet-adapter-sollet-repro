@@ -1,15 +1,13 @@
 import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
 
-const connectPhantomButton = document.getElementById(
-  "connect-phantom"
-) as HTMLButtonElement;
-const phantomWallet = new PhantomWalletAdapter();
+const button = document.getElementById("connect-phantom");
+const wallet = new PhantomWalletAdapter();
 
-phantomWallet.on("ready", () => console.log("[phantom] wallet ready"));
-phantomWallet.on("connect", () => console.log("[phantom] wallet connected"));
+wallet.on("ready", () => console.log("[phantom] wallet ready"));
+wallet.on("connect", () => console.log("[phantom] wallet connected"));
+wallet.on("disconnect", () => console.log("[phantom] wallet disconnected"));
+wallet.on("error", () => console.log("[phantom] wallet error"));
 
-connectPhantomButton.addEventListener("click", () => {
-  console.log(phantomWallet);
-
-  phantomWallet.connect();
+button.addEventListener("click", () => {
+  wallet.connect();
 });
